@@ -1,0 +1,69 @@
+<div id="motion">
+      <input type="button" class="button" value="homePick" onclick="sendPost($(this).val())" /> 
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	    <input type="button" class="button" value="movePickIn" onclick="pick($(this).val())" />  
+	      <input type="button" class="button" value="movePickOut" onclick="pick($(this).val())" />  
+	      </div>
+	<div class="parameter">
+	    <input type="text" class="parameter" value="5" id="pick"> mm
+	    </div>
+      </div>
+
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	    <input type="button" class="button" value="raiseSolettes" onclick="solettes($(this).val())" />  
+	      <input type="button" class="button" value="lowerSolettes" onclick="solettes($(this).val())" />
+	      </div>
+	<div class="parameter">
+	    <input type="text" value="5" class="parameter"  id="solettes"> mm
+	    </div>
+      </div>
+
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	    <input type="button" class="button" value="retractConveyor" onclick="conveyor($(this).val())" />
+	      <input type="button" class="button" value="advanceConveyor" onclick="conveyor($(this).val())" />
+	        <input type="button" class="button" value="setConveyorHomePos" onclick="sendPost($(this).val())" />
+		  <input type="button" class="button" value="homeConveyor" onclick="sendPost($(this).val())" />
+		  </div>
+	<div class="parameter">
+	    <input type="text" value="5" class="parameter" id="conveyor"> mm
+	    </div>
+      </div>
+
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	    <input type="button" class="button" value="retractTabbing" onclick="tabbing($(this).val())" />
+	      <input type="button" class="button" value="advanceTabbing" onclick="tabbing($(this).val())" />
+	      </div>
+	<div class="parameter">
+	    <input type="text" value="5" class="parameter" id="tabbing"> mm
+	    </div>
+      </div>
+
+
+      <input type="button" class="button" value="raisePickHead" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="lowerPickHead" onclick="sendPost($(this).val())" />
+      <input type="button" class="button" value="moveToSolettePickup" onclick="sendPost($(this).val())" />
+      <input type="button" class="button" value="moveToConveyor" onclick="sendPost($(this).val())" />
+</div>
+
+<div class="utility">
+      <input type="button" class="button" value="solder" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="suctionOn" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="suctionOff" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="backingPusherIn" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="backingPusherOut" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="tabbingCutterUp" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="tabbingCutterDown" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="demo" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="bounceWithMe" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="startup" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="solderDoorDown" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="solderDoorUp" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="solderFanOn" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="solderFanOff" onclick="sendPost($(this).val())" /> 
+
+      <input type="button" class="button" id="E-Stop"  value="E-stop" onclick="sendPost($(this).val())" /> 
+</div>

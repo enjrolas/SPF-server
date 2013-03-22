@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from command.models import Command
 from factoryState.models import FactoryState
 from django.utils import timezone
+from django.core import serializers
 
 def command(request):
         if request.method == 'POST':
@@ -19,6 +20,13 @@ def command(request):
                 return HttpResponse("yo")
 	else:
 		return HttpResponse("bite me")
+
+def deleteCommand(request):
+        if request.method == 'POST':
+		_command=request.POST.get('command', 'boo')
+		command=Command.objects.filter(pk=_command)
+		command.delete()
+	return HttpResponse("ok")
 
 def buildDescription(_command):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
@@ -86,6 +94,11 @@ def newCommands(request):
 		return render(request, 'newCommands.html', { 'commands': latestCommands})
 	else:
 		return HttpResponse("queue_empty")
+
+def update(request):
+	pendingCommands=serializers.serialize("json",Command.objects.all().order_by('-commandTimeStamp'))
+	return HttpResponse(pendingCommands);
+		
 
 def interface(request):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command

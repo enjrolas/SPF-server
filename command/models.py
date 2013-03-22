@@ -4,6 +4,7 @@ from factoryState.models import FactoryState
 from django.template.loader import render_to_string
 
 class Command(models.Model):
+    factoryId = models.IntegerField(default=1)
     command  =   models.CharField(max_length=20)
     commandTimeStamp    =   models.DateTimeField(auto_now=True)
     parameter=models.FloatField()

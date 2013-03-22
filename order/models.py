@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 
 class Order(models.Model):
+    factoryId = models.IntegerField(default=1)
     customerid  =   models.CharField(max_length=20)
     voltage     =   models.IntegerField()
     current     =   models.IntegerField()
