@@ -1,21 +1,14 @@
 {% extends "placeSolette.html" %}
 {% block prefix %} {# this gcode handles popping a backing from the hopper and advancing it until it's ready to place solettes #}
-!14 {# solder door up.  In memory of our fallen pogos #}
-!5   {# backing pusher out #}
-G4P500
-!6 {# backing pusher in #}
-G91
-G0X312  {# move the new backing to start position #}
-G4P6000
-G0A{{ factoryState.tabbingConnection }} {# extend the tabbing between the pad and the first solette #}
-G4P6000
-!1  {# tabbing cutter down #}
-G4P1000
-!2 {# tabbing cutter up #}
-G4P500
-G0X13
+G0X{{ factoryState.strokeLead }}  # move up until the pusher is contacting the PCB
+G0X{{ factoryState.strokeEnd }}  # now the PCB should by touching the edge of the next PCB
+G0X{{ panel.margin }}  # now we're aligned with the edge of the active area
+G0X{{ panel.active-margin }}
 ,
 {% endblock %}
 {% block postfix %}  {# here's the gcode that happens after you place all the solettes #}
+G0X-{{ factoryState.strokeLead }}  # move back the entire stroke length
+G0X-{{ factoryState.strokeEnd }}  # move back the entire stroke length
+G0X-{{ panel.length }}  # move back the entire stroke length
 , 
 {% endblock %}

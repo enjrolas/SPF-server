@@ -84,19 +84,9 @@ def factoryState(request):
 	else:
 		return HttpResponse("poo")
 
-def newCommands(request):
-	if Command.objects.filter(status='queued').order_by('-commandTimeStamp').exists():
-		latestCommands=Command.objects.filter(status='queued').order_by('-commandTimeStamp')
-		for command in latestCommands:
-			command.status= "loaded onto pi"
-			command.statusTimeStamp=timezone.now()
-			command.save()
-		return render(request, 'newCommands.html', { 'commands': latestCommands})
-	else:
-		return HttpResponse("queue_empty")
 
-def update(request):
-	pendingCommands=serializers.serialize("json",Command.objects.all().order_by('-commandTimeStamp'))
+def pendingCommands(request):
+	pendingCommands=serializers.serialize("json",Command.objects.all().filter(status='queued').order_by('-commandTimeStamp'))
 	return HttpResponse(pendingCommands);
 		
 

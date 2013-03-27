@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'order',
     'command',
     'factoryState',
+    'panel',
     'south',
     #'django_evolution',
 )

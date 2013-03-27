@@ -2,6 +2,9 @@ from django.db import models
 from django.forms import ModelForm
 
 class FactoryState(models.Model):
+
+    factoryId = models.IntegerField(default=1)
+
     #mapping
     var_1ma=models.IntegerField()
     var_2ma=models.IntegerField()
@@ -51,6 +54,7 @@ class FactoryState(models.Model):
 
     soletteWidth=models.FloatField()  #in mm
     soletteLength=models.FloatField()  # in mm
+    soletteThickness=models.FloatField()  # in mm
 
 
     hopperPosition=models.FloatField() #in mm, hopperPosition along the axis
