@@ -1,0 +1,10 @@
+G90
+$xsv=-500
+$xSM=1
+$xTM=30 {# max travel is 350mm #}
+$xLB=25 {# backoff 5mm before latching #}
+$xJD=100 {# axis acceleration setting #}
+$xZB=0  {# no backoff from the homing switch #}
+G28.1X0
+G91 {# and back to relative mode #}
+

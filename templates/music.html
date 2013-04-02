@@ -1,0 +1,3 @@
+{% for music in musics %}
+<input type="button" class="button" value="music:{{ music }}" onclick="sendPost($(this).val())" /> <br/>
+{% endfor %}

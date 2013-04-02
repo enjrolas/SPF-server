@@ -14,3 +14,6 @@ class Panel(models.Model):
     solette_spacing=models.FloatField()
     solette_length=models.FloatField()
     initial_stroke=models.FloatField()
+    strokePosition=models.FloatField()
+    pickCenterToSoletteEdge=models.FloatField()
+    conveyorHeadPosition=models.FloatField()

@@ -4,8 +4,11 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from command.models import Command
 from factoryState.models import FactoryState
+from panel.models import Panel
 from django.utils import timezone
 from django.core import serializers
+from panel.models import Panel
+import os
 
 def command(request):
         if request.method == 'POST':
@@ -14,10 +17,8 @@ def command(request):
 		_quantity=request.POST.get('quantity',0)
 		myCommand = Command(command=_command, statusTimeStamp=timezone.now(), parameter=_parameter, quantity=_quantity, status='queued', commandTimeStamp=timezone.now())
 		myCommand.json=jsonTranslation(myCommand)
-		if myCommand.command=="placePanel":
-			myCommand.description=buildDescription(myCommand)
                 myCommand.save()
-                return HttpResponse("yo")
+                return HttpResponse(myCommand.json)
 	else:
 		return HttpResponse("bite me")
 
@@ -28,21 +29,22 @@ def deleteCommand(request):
 		command.delete()
 	return HttpResponse("ok")
 
-def buildDescription(_command):
-	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
-		factoryState=FactoryState.objects.get(id=1)
-		description=render_to_string("panelDescription.html", {'command': _command, 'factoryState' : factoryState})
-	else:
-		description="aaa"
-	return description
 
 def jsonTranslation(_command):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
 		factoryState=FactoryState.objects.get(id=1)
-		jsonString=render_to_string(_command.command + ".html", {'command': _command, 'factoryState' : factoryState})
+		if Panel.objects.exists():
+			panel=Panel.objects.get(id=1)
+			if _command.command.find(":")==-1:  #this is a hardcoded command
+				jsonString=render_to_string(_command.command + ".html", {'command': _command, 'factoryState' : factoryState, 'panel' : panel})
+			else:  #it's a custom button, extract the folder and render that sucker
+				jsonString=render_to_string(_command.command[:_command.command.find(":")] + "/"+_command.command[_command.command.find(":")+1:], {'command': _command, 'factoryState' : factoryState, 'panel' : panel})				
+		else:
+			jsonString=""
 	else:
 		jsonString=""
 	return jsonString
+
 
 def json(request):
 	_command="placeSolette"
@@ -93,7 +95,10 @@ def pendingCommands(request):
 def interface(request):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
 		factoryState=FactoryState.objects.get(id=1)
-	return render(request, 'interface.html', {'factoryState' : factoryState})
+                panel=Panel.objects.get(id=1)
+		programs=os.listdir("/home/japhy/solarPocketFactory/templates/programs")
+		musics=os.listdir("/home/japhy/solarPocketFactory/templates/music")
+	return render(request, 'interface.html', {'factoryState' : factoryState, 'panel' :panel, 'programs' : programs, 'musics': musics})
 
 def testing(request):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command

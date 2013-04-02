@@ -14,18 +14,31 @@
 <body>
 <div id="tabs">
   <ul>
-    <li><a href="#panelProduction">Panel Production</a></li>
-    <li><a href="#panelSetup">Panel Setup</a></li>
     <li><a href="#utility">Utility</a></li>
+    <li><a href="#machineSetup">Machine Setup</a></li>
+    <li><a href="#panelSetup">Panel Setup</a></li>
+    <li><a href="#panelProduction">Panel Production</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#music">Music</a></li>
   </ul>
-  <div id="panelProduction">
-    {% include "panelProduction.html" %}
+
+  <div id="utility">
+    {% include "utility.html" %}
+  </div>
+  <div id="machineSetup">
+    {% include "machineSetup.html" %}
   </div>
   <div id="panelSetup">
     {% include "panelSetup.html" %}
   </div>
-  <div id="utility">
-    {% include "utility.html" %}
+  <div id="panelProduction">
+    {% include "panelProduction.html" %}
+  </div>
+  <div id="programs">
+    {% include "programs.html" %}
+  </div>
+  <div id="music">
+    {% include "music.html" %}
   </div>
 </div>
  

@@ -37,6 +37,12 @@ class FactoryState(models.Model):
     var_zsa=models.FloatField()
     var_asa=models.FloatField()
 
+    #polarity
+    var_1po=models.IntegerField()
+    var_2po=models.IntegerField()
+    var_3po=models.IntegerField()
+    var_4po=models.IntegerField()
+
     #power mode
     var_1pm=models.IntegerField()
     var_2pm=models.IntegerField()
@@ -59,7 +65,7 @@ class FactoryState(models.Model):
 
     hopperPosition=models.FloatField() #in mm, hopperPosition along the axis
     conveyorPosition=models.FloatField() #in mm, conveyorPosition along the axis
-    
+
     suctionReleaseTime=models.IntegerField()  #in ms, how long you wait after releasing suction, before moving the head
     suctionDelay=models.IntegerField()  #in ms, how long you wait after turning on suction, before moving the head
 
@@ -74,3 +80,5 @@ class FactoryState(models.Model):
     tabbingOffset=models.FloatField()
 
     soletteSpacing=models.FloatField()  #in mm
+
+    halfAdvance=models.FloatField() #in mm, half of the (solette width + solette spacing)
