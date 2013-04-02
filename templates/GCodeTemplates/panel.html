@@ -1,13 +1,18 @@
-{% extends "placeSolette.html" %}
-{% block prefix %} {# this gcode handles popping a backing from the hopper and advancing it until it's ready to place solettes #}
-{
-"beginPanel":
-{"gc" : 
-, "placeSolette":
-{% endblock %}
-, 
-{% block postfix %}  {# here's the gcode that happens after you place all the solettes #}
-,"endPanel":
-
-}
-{% endblock %}
+mark:start:0.0
+mark:solder:-8.5
+mark:tabbing:-8.5
+mark:solder:0
+mark:solette:-6.5
+mark:tabbing:-7.5
+mark:solder:0
+mark:solette:-6.5
+mark:tabbing:-7.5
+mark:solder:0
+mark:solette:-6.5
+mark:tabbing:-7.5
+mark:solder:0
+mark:solette:-7.5
+mark:solder:-1.35
+mark:tabbing:0
+mark:end:-8.5
+advance:71.5

@@ -1,0 +1,5 @@
+g0A-{{ factoryState.tabbingLength }}
+G4P500
+!1  {# tabbing cutter down #}
+G4P500
+!2 {# tabbing cutter up #}

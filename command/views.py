@@ -46,18 +46,13 @@ def jsonTranslation(_command):
 	return jsonString
 
 
-def json(request):
-	_command="placeSolette"
-	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
-		factoryState=FactoryState.objects.get(id=1)
-		jsonString=render_to_string(_command + ".html", {'command': _command, 'factoryState' : factoryState})
-	else:
-		jsonString=""
-	responseString=_command+" "+jsonString
-	return HttpResponse(responseString)
 
-def latestCommand(request):
-	return HttpResponse("bluh")
+
+def pendingCommands(request):
+	pendingCommands=serializers.serialize("json",Command.objects.all().filter(status='queued').order_by('-commandTimeStamp'))
+	return HttpResponse(pendingCommands);
+
+
 
 def tinyGParameter(request):
         if request.method == 'POST':
@@ -87,11 +82,6 @@ def factoryState(request):
 		return HttpResponse("poo")
 
 
-def pendingCommands(request):
-	pendingCommands=serializers.serialize("json",Command.objects.all().filter(status='queued').order_by('-commandTimeStamp'))
-	return HttpResponse(pendingCommands);
-		
-
 def interface(request):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
 		factoryState=FactoryState.objects.get(id=1)
@@ -99,11 +89,6 @@ def interface(request):
 		programs=os.listdir("/home/japhy/solarPocketFactory/templates/programs")
 		musics=os.listdir("/home/japhy/solarPocketFactory/templates/music")
 	return render(request, 'interface.html', {'factoryState' : factoryState, 'panel' :panel, 'programs' : programs, 'musics': musics})
-
-def testing(request):
-	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
-		factoryState=FactoryState.objects.get(id=1)
-	return render(request, 'testing.html', {'factoryState' : factoryState})
 
 def startup(request):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command

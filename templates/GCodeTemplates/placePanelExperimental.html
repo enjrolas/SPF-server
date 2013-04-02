@@ -1,0 +1,96 @@
+{# start with front edge of board aligned with edge of tabber #}
+M8
+SP {# mark pad solder point #}
+M9  {# in the center of the solette #}
+G0A-11.5
+!1  {# tabbing cutter down #}
+G4P250
+!2 {# tabbing cutter up #}
+M7
+
+G0z-.2
+!7
+!3
+G4P250
+!4
+G4P250
+g0y{{ factoryState.conveyorPosition }}  {# move the pick head over the conveyor #}
+G4P250
+!3  {# lower the suction head #}
+G4P250
+!8  {# turn off the suction  #}
+G4P250
+!4  {# raise the suction head #}
+G4P250
+g0y-{{ factoryState.conveyorPosition }}  {# move the pick head over the solettes #}
+M7
+G0A-16
+!1  {# tabbing cutter down #}
+G4P250
+!2 {# tabbing cutter up #}
+
+G0z-.2
+!7
+!3
+G4P250
+!4
+G4P250
+g0y{{ factoryState.conveyorPosition }}  {# move the pick head over the conveyor #}
+G4P250
+!3  {# lower the suction head #}
+G4P250
+!8  {# turn off the suction  #}
+G4P250
+!4  {# raise the suction head #}
+G4P250
+g0y-{{ factoryState.conveyorPosition }}  {# move the pick head over the solettes #}
+M7
+G0A-16
+!1  {# tabbing cutter down #}
+G4P250
+!2 {# tabbing cutter up #}
+
+G0z-.2
+!7
+!3
+G4P250
+!4
+G4P250
+g0y{{ factoryState.conveyorPosition }}  {# move the pick head over the conveyor #}
+G4P250
+!3  {# lower the suction head #}
+G4P250
+!8  {# turn off the suction  #}
+G4P250
+!4  {# raise the suction head #}
+G4P250
+g0y-{{ factoryState.conveyorPosition }}  {# move the pick head over the solettes #}
+M7
+G0A-16
+!1  {# tabbing cutter down #}
+G4P250
+!2 {# tabbing cutter up #}
+
+G0z-.2
+!7
+!3
+G4P250
+!4
+G4P250
+g0y{{ factoryState.conveyorPosition }}  {# move the pick head over the conveyor #}
+G4P250
+!3  {# lower the suction head #}
+G4P250
+!8  {# turn off the suction  #}
+G4P250
+!4  {# raise the suction head #}
+G4P250
+g0y-{{ factoryState.conveyorPosition }}  {# move the pick head over the solettes #}
+M7
+G0A-16
+!1  {# tabbing cutter down #}
+G4P250
+!2 {# tabbing cutter up #}
+
+M9.5
+

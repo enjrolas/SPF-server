@@ -81,4 +81,10 @@ class FactoryState(models.Model):
 
     soletteSpacing=models.FloatField()  #in mm
 
-    halfAdvance=models.FloatField() #in mm, half of the (solette width + solette spacing)
+    halfAdvance=models.FloatField() #in mm, half of the (solette width + solette spacing
+    
+    tabberPosition=models.FloatField()
+    pickPosition=models.FloatField()
+    soldererPosition=models.FloatField()
+    testPosition=models.FloatField()
+    endPosition=models.FloatField()
