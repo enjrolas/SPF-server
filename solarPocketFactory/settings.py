@@ -126,8 +126,8 @@ INSTALLED_APPS = (
     'django_evolution',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'order',
     'command',
+    'interface',
     'factoryState',
     'panel',
     'south',

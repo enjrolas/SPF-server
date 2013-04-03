@@ -4,6 +4,7 @@
   <input type="button" class="button" value="placeSolette" id="soletteButton" onclick="sendPost($(this).val())" />      
   
 </div>
+
 <div id="motion">
       <div class="adjustableCommand">
 	<div class="commandButtons">
@@ -66,6 +67,7 @@
       <input type="button" class="button" value="solderingStationOn" onclick="sendPost($(this).val())" /> 
       <input type="button" class="button" value="solderingStationOff" onclick="sendPost($(this).val())" /> 
 
+
 </div>
 </div>
 
@@ -91,6 +93,5 @@
       <input type="button" class="button" value="solder" onclick="sendPost($(this).val())" /> 
       <input type="button" class="button" value="panel" onclick="sendPost($(this).val())" /> 
 
-</div>
 </div>
 
