@@ -1,0 +1,13 @@
+{% for action in actions %}
+<div class="action">
+<h3>{{ action.actionType }}</h3>
+<textarea class="actionCodede" name="{{ action.actionType }}">{{ action.actionCode }}</textarea>
+<input type="button" class="button" name="{{ action.actionType }}" value="updateAction" onclick="action($(this).attr('name'))" /> 
+</div>
+{% endfor %}
+<div class="newAction">
+<input type="text" name="newActionType" value="new action">
+<textarea class="actionCode" name="newActionCode">{{ action.actionCode }}</textarea>
+<input type="button" class="button" name="{{ action.actionType }}" value="newAction" onclick="action($(this).attr('name'))" /> 
+</div>
+

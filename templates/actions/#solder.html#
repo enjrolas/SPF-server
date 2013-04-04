@@ -1,0 +1,7 @@
+!16  {# soldering station down #}
+G4P250
+P100 {# 80% power #}
+!17 {# soldering station on #}
+G4P2200 {# wait one second #}
+!18 {# soldering station off #
+!15  {# soldering station up #}

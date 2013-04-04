@@ -37,6 +37,8 @@ def jsonTranslation(_command):
 			panel=Panel.objects.get(id=1)
 			if _command.command.find(":")==-1:  #this is a hardcoded command
 				jsonString=render_to_string(_command.command + ".html", {'command': _command, 'factoryState' : factoryState, 'panel' : panel})
+			elif _command.command.find("action")!=-1:
+				jsonString=render_to_string(_command.command[:_command.command.find(":")] + "/"+_command.command[_command.command.find(":")+1:]+".html", {'command': _command, 'factoryState' : factoryState, 'panel' : panel})								
 			else:  #it's a custom button, extract the folder and render that sucker
 				jsonString=render_to_string(_command.command[:_command.command.find(":")] + "/"+_command.command[_command.command.find(":")+1:], {'command': _command, 'factoryState' : factoryState, 'panel' : panel})				
 		else:
@@ -46,12 +48,18 @@ def jsonTranslation(_command):
 	return jsonString
 
 
-
-
-def pendingCommands(request):
-	pendingCommands=serializers.serialize("json",Command.objects.all().filter(status='queued').order_by('-commandTimeStamp'))
-	return HttpResponse(pendingCommands);
-
+def renderAction(request):
+        if request.method == 'POST':
+		action=request.POST.get('actionType')
+#		action=request.POST.values()
+		action="actions:"+action
+		
+		myCommand = Command(command=action, statusTimeStamp=timezone.now(), parameter="", quantity=0, status='queued', commandTimeStamp=timezone.now())
+		myCommand.json=jsonTranslation(myCommand)
+#		return HttpResponse(action)
+		return HttpResponse(myCommand.json)
+	else:
+		return HttpResponse("no joy")
 
 
 def tinyGParameter(request):
@@ -82,15 +90,11 @@ def factoryState(request):
 		return HttpResponse("poo")
 
 
-def interface(request):
-	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
-		factoryState=FactoryState.objects.get(id=1)
-                panel=Panel.objects.get(id=1)
-		programs=os.listdir("/home/japhy/solarPocketFactory/templates/programs")
-		musics=os.listdir("/home/japhy/solarPocketFactory/templates/music")
-	return render(request, 'interface.html', {'factoryState' : factoryState, 'panel' :panel, 'programs' : programs, 'musics': musics})
-
 def startup(request):
 	if FactoryState.objects.exists():  #assuming we have a factoryState object, pass it to the appropriate json template, render the template, and pass it back, to get stored along with the command
 		factoryState=FactoryState.objects.get(id=1)
 	return render(request, 'startup.html', {'factoryState' : factoryState})
+
+def pendingCommands(request):
+	pendingCommands=serializers.serialize("json",Command.objects.all().filter(status='queued').order_by('-commandTimeStamp'))
+	return HttpResponse(pendingCommands);
