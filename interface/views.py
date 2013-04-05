@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.core import serializers
 from panel.models import Panel
 from action.models import Action
+from point.models import Point
 import os
 
 def interface(request):
@@ -16,7 +17,8 @@ def interface(request):
     factoryState=FactoryState.objects.get(id=1)
     panel=Panel.objects.get(id=1)
     actions=Action.objects.all()
+    points=Point.objects.all()
     programs=os.listdir("/home/japhy/solarPocketFactory/templates/programs")
     musics=os.listdir("/home/japhy/solarPocketFactory/templates/music")
-    return render(request, 'interface.html', {'factoryState' : factoryState, 'panel' :panel, 'programs' : programs, 'musics': musics, 'actions' :actions})
+    return render(request, 'interface.html', {'factoryState' : factoryState, 'panel' :panel, 'programs' : programs, 'musics': musics, 'actions' :actions, 'points':points})
 

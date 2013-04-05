@@ -3,6 +3,9 @@ from django.forms import ModelForm
 
 class FactoryState(models.Model):
 
+    def getFields(self):
+        return [(field.name, field.value_to_string(self)) for field in FactoryState._meta.fields]
+
     factoryId = models.IntegerField(default=1)
 
     #mapping

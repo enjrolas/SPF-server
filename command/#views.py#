@@ -81,6 +81,7 @@ def addPoints(points):
 			point.position=closestPoint+float(parts[2])-remainingDistance
 		else:
 			point.position=float(parts[2])-remainingDistance
+		
 		point.save()
 
 def tinyGParameter(request):

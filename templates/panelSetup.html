@@ -1,20 +1,7 @@
 <div class="panelState">
-  panel parameters<br/>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="length"><input type="text"  value="{{ panel.length }}" id="length" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="margin"><input type="text"  value="{{ panel.margin }}" id="margin" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="active_area"><input type="text"  value="{{ panel.active_area }}" id="active_area" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="active_margin"><input type="text"  value="{{ panel.active_margin }}" id="active_margin" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="stroke_lead"><input type="text"  value="{{ panel.stroke_lead }}" id="stroke_lead" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="stroke_end"><input type="text"  value="{{ panel.stroke_end }}" id="stroke_end" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="full_stroke"><input type="text"  value="{{ panel.full_stroke }}" id="full_stroke" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="voltage"><input type="text"  value="{{ panel.voltage }}" id="voltage" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="solette_spacing"><input type="text"  value="{{ panel.solette_spacing }}" id="solette_spacing" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="solette_length"><input type="text"  value="{{ panel.solette_length }}" id="solette_length" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="initial_stroke"><input type="text"  value="{{ panel.initial_stroke }}" id="initial_stroke" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="strokePosition"><input type="text"  value="{{ panel.strokePosition }}" id="strokePosition" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="pickCenterToSoletteEdge"><input type="text"  value="{{ panel.pickCenterToSoletteEdge }}" id="pickCenterToSoletteEdge" class="panelValue"></div>
-    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="conveyorHeadPosition"><input type="text"  value="{{ panel.conveyorHeadPosition }}" id="conveyorHeadPosition" class="panelValue"></div>
-
-
-
+{% for name, value in panel.getFields %}
+  {% if value %}
+    <div class="valueLine"><input type="button" class="panelStateButton" onClick="sendPanelValue($(this).val())" value="{{ name }}"><input type="text"  value="{{ value }}" id="{{ name }}" class="panelValue"></div>
+  {% endif %}
+{% endfor %}
 </div>
