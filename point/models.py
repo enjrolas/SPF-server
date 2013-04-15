@@ -6,3 +6,9 @@ class Point(models.Model):
     position=models.FloatField()
     remainingDistance=models.FloatField()
     panelID=models.IntegerField()
+    
+    def __str__(self):
+        return "%s position:  %s from backing, %s from target" % (pointType, position, remainingDistance)
+
+    def __repr__(self):
+        return "%s position:  %s from backing, %s from target" % (pointType, position, remainingDistance)

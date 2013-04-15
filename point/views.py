@@ -4,7 +4,7 @@ from point.models import Point
 import os
 
 def pendingPoints(request):
-	pendingCommands=serializers.serialize("json",Point.objects.all().filter(status='queued').order_by('-commandTimeStamp'))
+	pendingCommands=serializers.serialize("json",Point.objects.all().order_by('remainingDistance'))
 	return HttpResponse(pendingCommands);
 
 def deletePoint(request):
@@ -14,3 +14,7 @@ def deletePoint(request):
 		point.delete()
 	return HttpResponse("ok")
 
+
+def deleteAllPoints(request):
+	Point.objects.all().delete()
+	return HttpResponse("ok")

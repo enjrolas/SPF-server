@@ -1,7 +1,7 @@
 import os
 import sys
 
-path = '/home/japhy/solarPocketFactory/'
+path = '/home/japhy/SPF-testing/'
 
 if path not in sys.path:
     sys.path.append(path)

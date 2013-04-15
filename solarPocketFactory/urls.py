@@ -18,4 +18,7 @@ urlpatterns = patterns('',
      url(r'^factoryState/', 'command.views.factoryState'),
      url(r'^action/', 'action.views.action'),
      url(r'^renderAction/$','command.views.renderAction'),
+     url(r'^pendingPoints/$','point.views.pendingPoints'),
+     url(r'^deletePoint/$','point.views.deletePoint'),
+     url(r'^deleteAllPoints/$','point.views.deleteAllPoints'),
 )
