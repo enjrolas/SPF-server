@@ -2,13 +2,18 @@
   <div id="pointQueue">
     <div id="queueHeading">
       points in machine queue
-      <button id="deleteAllPoints" onClick="deleteAllPoints();">Delete All Points</button>
-    <canvas id="points" width="500px" height="400px">
+      <div id='controls'>
+      <input type="button" class="button"  id="deleteAllPoints" onClick="deleteAllPoints();" value="Delete All Points">
+      <input type="button" class="button" value="step" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="executeAll" onclick="sendPost($(this).val())" /> 
+      </div>
+    </div>
+    <canvas id="points">
       </canvas>
 
     <div id="jobs">
       </div>
-    </div>
+
   </div>
   <div id ="machineStatus">
     </div>

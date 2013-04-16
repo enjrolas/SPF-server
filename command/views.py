@@ -94,7 +94,7 @@ def addPanel(points):
 def addPoint(pointCommand, backingId):
 	panel=Panel.objects.get(id=1)
 	remainingDistance=panel.length+panel.stroke_end+panel.stroke_lead-panel.strokePosition
-	if remainingDistance<=panel.stroke_lead:
+	if remainingDistance>=panel.length+panel.stroke_end:
 		remainingDistance=0
 	parts=pointCommand.split(":")
 	point=Point()
@@ -121,7 +121,6 @@ def addPoint(pointCommand, backingId):
 	elif(point.pointType=="end"):
 		point.remainingDistance=panel.conveyorEnd-point.position
 		
-		#this is wretched--I spent 30 mins because I named the field panelID instead of panelId.  Let that be a lesson to me!
 	if backingId!=None:			
 		point.panelID=22
 	else:

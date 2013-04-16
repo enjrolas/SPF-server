@@ -5,7 +5,8 @@ import os
 
 def pendingPoints(request):
 	pendingCommands=serializers.serialize("json",Point.objects.all().order_by('remainingDistance'))
-#	pendingCommands=serializers.serialize("json",Point.objects.all().order_by('position'))
+#	machineData=list(serializers.serialize("json",Point.objects.all().order_by('remainingDistance')))+list(serializers.serialize("json",Panel.objects.get(0)))
+#	return HttpResponse(machineData)
 	return HttpResponse(pendingCommands);
 
 def deletePoint(request):

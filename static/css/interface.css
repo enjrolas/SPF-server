@@ -36,9 +36,18 @@ font-size: 14pt;
 }
 
 div#pointQueue{
-width: 75%;
 }
 
+div#controls{
+}
+
+canvas#points{
+    outline: solid;
+    width: 800px;
+    height: 400px;
+    margin: 10px;
+    background-color: #005500;
+}
 
 span.command-type{
 margin-right: 5px;

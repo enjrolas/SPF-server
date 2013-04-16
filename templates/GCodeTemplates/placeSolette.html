@@ -1,4 +1,3 @@
-{% block prefix %}{% endblock %}{% block placeSolette %}
 G91
 g0Z-{{ factoryState.soletteThickness }}
 G4P100
@@ -16,12 +15,3 @@ G4P250
 !4  {# raise the suction head #}
 G4P250
 g0y-{{ factoryState.conveyorPosition }}  {# move the pick head over the solettes #}
-M{{ factoryState.halfAdvance }}
-G4P500
-g0A-{{ factoryState.tabbingLength }}
-G4P500
-!1  {# tabbing cutter down #}
-G4P500
-!2 {# tabbing cutter up #}
-M{{ factoryState.halfAdvance }}
-{% endblock %}{% block postfix %}{% endblock %}
