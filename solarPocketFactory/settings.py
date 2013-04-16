@@ -130,7 +130,6 @@ INSTALLED_APPS = (
     'panel',
     'south',
     'point',
-    'action',
     'backing',
 
 )

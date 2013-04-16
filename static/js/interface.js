@@ -114,7 +114,8 @@ $("#tabs").tabs({activate: function(event, ui){
 		    if(data[i].fields["position"]>max)
 			max=data[i].fields["position"];
 		}
-		$("canvas").clearCanvas()
+		$("canvas").clearCanvas();
+		    drawLegend();
 		var pendingCommands="";
 		for(var i=0;i<data.length;i++){
 		    var color=""
@@ -142,3 +143,42 @@ $("#tabs").tabs({activate: function(event, ui){
 })();
 
 
+function drawLegend()
+{
+    $("canvas#points").drawText({
+	    fillStyle: "#00FF00",
+		strokeWidth: 2,
+		x: 400, y: 250,
+		font: "18pt Verdana, sans-serif",
+		text: "start"
+		});
+
+    $("canvas#points").drawText({
+	    fillStyle: "#FF0000",
+		strokeWidth: 2,
+		x: 400, y: 270,
+		font: "18pt Verdana, sans-serif",
+		text: "end"
+		});
+    $("canvas#points").drawText({
+	    fillStyle: "#FFFF00",
+		strokeWidth: 2,
+		x: 400, y: 290,
+		font: "18pt Verdana, sans-serif",
+		text: "placeSolette"
+		});
+    $("canvas#points").drawText({
+	    fillStyle: "#0000FF",
+		strokeWidth: 2,
+		x: 400, y: 310,
+		font: "18pt Verdana, sans-serif",
+		text: "tab"
+		});
+    $("canvas#points").drawText({
+	    fillStyle: "#FF00FF",
+		strokeWidth: 2,
+		x: 400, y: 330,
+		font: "18pt Verdana, sans-serif",
+		text: "solder"
+		});
+}

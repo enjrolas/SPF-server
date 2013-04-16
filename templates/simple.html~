@@ -1,0 +1,66 @@
+<div class="motionCommands">
+<div id="placement">
+  <input type="button" class="button" value="placePanel" id="panelButton" onclick="sendPost($(this).val())" />      
+  <input type="button" class="button" value="placeSolette" id="soletteButton" onclick="sendPost($(this).val())" />      
+  
+</div>
+
+<div id="motion">
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	  <input type="button" class="button" value="movePickIn" onclick="pick($(this).val())" />  
+	  <input type="button" class="button" value="movePickOut" onclick="pick($(this).val())" />  
+	</div>
+	<div class="parameter">
+	  <input type="text" class="parameter" value="259" id="pick"> mm
+	</div>
+      </div>
+
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	  <input type="button" class="button" value="raiseSolettes" onclick="solettes($(this).val())" />  
+	  <input type="button" class="button" value="lowerSolettes" onclick="solettes($(this).val())" />
+	</div>
+	<div class="parameter">
+	  <input type="text" value="5" class="parameter"  id="solettes"> mm
+	</div>
+      </div>
+
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	  <input type="button" class="button" value="retractConveyor" onclick="conveyor($(this).val())" />
+	  <input type="button" class="button" value="advanceConveyor" onclick="conveyor($(this).val())" />
+	  </div>
+	<div class="parameter">
+	  <input type="text" value="5" class="parameter" id="conveyor"> mm
+	</div>
+      </div>
+
+      <div class="adjustableCommand">
+	<div class="commandButtons">
+	  <input type="button" class="button" value="retractTabbing" onclick="tabbing($(this).val())" />
+	  <input type="button" class="button" value="advanceTabbing" onclick="tabbing($(this).val())" />
+	</div>
+	<div class="parameter">
+	  <input type="text" value="5" class="parameter" id="tabbing"> mm
+	</div>
+      </div>
+
+
+</div>
+</div>
+
+<div class="utility">
+      <input type="button" class="button" value="placeSolette" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="tab" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="solder" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="homeAxes" onclick="sendPost($(this).val())" /> 
+
+      <input type="button" class="button" value="addTabbedpanel" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="addShingledPanel" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="step" onclick="sendPost($(this).val())" /> 
+      <input type="button" class="button" value="executeAll" onclick="sendPost($(this).val())" /> 
+
+
+</div>
+
