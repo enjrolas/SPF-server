@@ -61,11 +61,13 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/japhy/solarPocketFactory/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
+
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = ''
+STATIC_URL = 'http://internal.solarpocketfactory.com/static/'
+
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -121,10 +123,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'django_evolution',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'command',
     'interface',
@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'panel',
     'south',
     'point',
-    #'django_evolution',
+    'backing',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

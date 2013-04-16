@@ -101,7 +101,7 @@ $("#tabs").tabs({activate: function(event, ui){
 
 (function pendingCommandsPoll(){
     $.ajax({
-	    url: "http://testing.solarpocketFactory.com/pendingPoints/", 
+	    url: "http://internal.solarpocketFactory.com/pendingPoints/", 
 	       dataType:' json',
 		success: function(data){
 		var pendingCommands="";
