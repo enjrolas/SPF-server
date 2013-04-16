@@ -8,7 +8,7 @@ class Point(models.Model):
     panelID=models.IntegerField()
     
     def __str__(self):
-        return "%s position:  %s from backing, %s from target" % (pointType, position, remainingDistance)
+        return "%s position:  %s from backing, %s from target" % (self.pointType, self.position, self.remainingDistance)
 
     def __repr__(self):
-        return "%s position:  %s from backing, %s from target" % (pointType, position, remainingDistance)
+        return "%s position:  %s from backing, %s from target" % (self.pointType, self.position, self.remainingDistance)

@@ -18,13 +18,11 @@ def command(request):
 		_quantity=request.POST.get('quantity',0)
 		myCommand = Command(command=_command, statusTimeStamp=timezone.now(), parameter=_parameter, quantity=_quantity, status='queued', commandTimeStamp=timezone.now())
 		myCommand.json=jsonTranslation(myCommand)
-		if myCommand.json.find("point")!=-1:
-			backingId=addPanel(myCommand.json)
-			addPoint(myCommand.json, backingId)
-			return HttpResponse(Point.objects.all())
+		if myCommand.command.lower().find("panel")!=-1:
+			return HttpResponse(addPanel(myCommand.json))
 		else:
 			myCommand.save()
-			return HttpResponse("no points here...")
+			return HttpResponse(myCommand.command.lower())
 	else:
 		return HttpResponse("bite me")
 
@@ -74,58 +72,61 @@ def actionGCode(action):
 def addPanel(points):
 	pointCommands=points.split()
 	solettes=0
+	length=0
 	for point in pointCommands:
 		parts=point.split(":")
-		length=0
 		if len(parts)==3:
-			if parts[1].strip()=="solette":
+			if parts[1].strip()=="placeSolette":
 				solettes+=1
 			length+=float(parts[2])
+				
 	backing=Backing()
 	backing.solettes=solettes
 	backing.length=abs(length)
 	backing.save()
-	return backing.id
-	
-def addPoint(points, backingId):
-	pointCommands=points.split()
-	panel=Panel.objects.get(id=1)
-	remainingDistance=panel.length-panel.strokePosition
-	if panel.strokePosition>panel.stroke_lead:
-		fullStroke=panel.length-panel.stroke_lead-panel.stroke_end
-		remainingStroke=fullStroke-panel.strokePosition
-	else:
-		remainingStroke=0
-	for p in pointCommands:
-		parts=p.split(":")
-		point=Point()
-		point.pointType=parts[1].strip()
-		point.code=actionGCode(point.pointType)
-		points=Point.objects.order_by('-position')
-		if len(points)>0:
-			closestPoint=points[0]
-			point.position=closestPoint.position+float(parts[2])-remainingStroke
-		else:
-			point.position=float(parts[2])-remainingStroke
-		if(point.pointType=="start"):
-			point.remainingDistance=panel.conveyorEnd-point.position
-		elif(point.pointType=="solder"):
-			point.remainingDistance=panel.solderPosition-point.position
-		elif(point.pointType=="tab"):
-			point.remainingDistance=panel.tabPosition-point.position
-		elif(point.pointType=="placeSolette"):
-			point.remainingDistance=panel.pickPosition-point.position
-		elif(point.pointType=="test"):
-			point.remainingDistance=panel.testPosition-point.position
-		elif(point.pointType=="end"):
-			point.remainingDistance=panel.conveyorEnd-point.position
+		
+	for point in pointCommands:
+		addPoint(point, backing.id)
 
+	return backing.solettes
+
+	
+def addPoint(pointCommand, backingId):
+	panel=Panel.objects.get(id=1)
+	remainingDistance=panel.length+panel.stroke_end+panel.stroke_lead-panel.strokePosition
+	if remainingDistance<=panel.stroke_lead:
+		remainingDistance=0
+	parts=pointCommand.split(":")
+	point=Point()
+	point.pointType=parts[1].strip()
+	point.code=actionGCode(point.pointType)
+	points=Point.objects.all().order_by('position')
+	if len(points)>0:
+		closestPoint=points[0]
+		point.position=closestPoint.position+float(parts[2])
+	else:
+		point.position=float(parts[2])-remainingDistance
+
+
+	if(point.pointType=="start"):
+		point.remainingDistance=panel.conveyorEnd-point.position
+	elif(point.pointType=="solder"):
+		point.remainingDistance=panel.solderPosition-point.position
+	elif(point.pointType=="tab"):
+		point.remainingDistance=panel.tabPosition-point.position
+	elif(point.pointType=="placeSolette"):
+		point.remainingDistance=panel.pickPosition-point.position
+	elif(point.pointType=="test"):
+		point.remainingDistance=panel.testPosition-point.position
+	elif(point.pointType=="end"):
+		point.remainingDistance=panel.conveyorEnd-point.position
+		
 		#this is wretched--I spent 30 mins because I named the field panelID instead of panelId.  Let that be a lesson to me!
-		if backingId!=None:			
-			point.panelID=22
-		else:
-			point.panelID=1
-		point.save()
+	if backingId!=None:			
+		point.panelID=22
+	else:
+		point.panelID=1
+	point.save()
 
 def tinyGParameter(request):
         if request.method == 'POST':
