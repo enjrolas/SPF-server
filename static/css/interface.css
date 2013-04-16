@@ -44,6 +44,13 @@ span.command-type{
 margin-right: 5px;
 }
 
+
+input.danger{
+    background-color: #ff8888;
+    color: #ff8888;
+    margin-top: 50px;
+}
+
 span.point-distance{
 margin-right: 5px;
 }
